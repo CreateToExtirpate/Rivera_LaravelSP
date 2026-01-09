@@ -2,19 +2,24 @@
 
 use Illuminate\Support\Facades\Route;
 
-// Welcome Page route when user reaches homepage (/)
-
-/* Route::get is a method, it retrieves the file path*/
 Route::get('/', function () {
     return view('home'); //Gives the Welcome view
 });
 
 //See Students Route
-Route :: get('/students', function () {
-    return view('students.students');
+Route::get('/students', function () {
+    return view('students.index');
 });
 
 // Add Student Route
-Route :: get('/students/add', function () {
-    return view('add_student');
+Route::get('/students/create', function () {
+    return view('students.create');
+});
+
+Route::get('/students/show', function(){
+    return view('students.show');
+});
+
+Route::get('/students/edit', function(){
+    return view('students.edit');
 });
