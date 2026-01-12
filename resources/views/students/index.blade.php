@@ -6,6 +6,7 @@
 
 @section('content')
     <h1>STUDENT INDEX</h1>
+    <button class="rounded m-3"><a href="/students/create">Add Student</a></button>
     <table class="table table-striped table-hover table-bordered">
         <thead>
             <tr>
@@ -23,7 +24,10 @@
                     <td>{{ $student['name'] }}</td>
                     <td>{{ $student['course'] }}</td>
                     <td>{{ $student['yearLevel'] }}</td>
-                    <td><button class="">View</button></td>
+                    <td>
+                        <button class=""><a href="/students/show">View</a></button>
+                        <button class=""><a href="/students/edit">Edit</a></button>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
