@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <title>{{ $title ?? 'Todo Manager' }}</title>
+    <title> Student Portal | @yield('title') </title>
 </head>
 
 <body>
@@ -22,13 +22,13 @@
             <div class="collapse navbar-collapse" id="navmenu">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a href="#" class="nav-link">Home</a>
+                        <a href="/" class="nav-link">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">Students</a>
+                        <a href="/students" class="nav-link">Students</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">Add Student</a>
+                        <a href="/students/create" class="nav-link">Add Student</a>
                     </li>
                 </ul>
             </div>
@@ -38,7 +38,7 @@
     <!-- Info -->
      <section class="bg-light text-dark p-5 center text-sm-start">
         <div class="container">
-            {{ $slot }}
+            @yield('content')
         </div>
      </section>
 
