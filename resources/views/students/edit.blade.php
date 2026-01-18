@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('title')
-Edit
+    Edit
 @endsection
 
 @section('content')
@@ -16,34 +16,38 @@ Edit
                         <form>
                             <div class="mb-3">
                                 <label for="studentId" class="form-label">ID</label>
-                                <input type="text" class="form-control" id="studentId" placeholder="Enter student ID"
+                                <input type="text" class="form-control" id="studentId" value="{{ $student['id'] }}"
                                     required>
                             </div>
                             <div class="mb-3">
                                 <label for="studentName" class="form-label">Name</label>
-                                <input type="text" class="form-control" id="studentName" placeholder="Enter full name"
+                                <input type="text" class="form-control" id="studentName" value="{{ $student['name'] }}"
                                     required>
                             </div>
                             <div class="mb-3">
                                 <label for="studentCourse" class="form-label">Course</label>
-                                <input type="text" class="form-control" id="studentCourse" placeholder="Enter course"
-                                    required>
+                                <input type="text" class="form-control" id="studentCourse"
+                                    value="{{ $student['course'] }}" required>
                             </div>
                             <div class="mb-3">
                                 <label for="yearLevel" class="form-label">Year Level</label>
                                 <select class="form-select" id="yearLevel" required>
-                                    <option selected disabled>Select year level</option>
-                                    <option value="1">1st Year</option>
-                                    <option value="2">2nd Year</option>
-                                    <option value="3">3rd Year</option>
-                                    <option value="4">4th Year</option>
+                                    <option disabled>Select year level</option>
+                                    <option value="1" {{ $student['yearLevel'] === '1st Year' ? 'selected' : '' }}>1st
+                                        Year</option>
+                                    <option value="2" {{ $student['yearLevel'] === '2nd Year' ? 'selected' : '' }}>2nd
+                                        Year</option>
+                                    <option value="3" {{ $student['yearLevel'] === '3rd Year' ? 'selected' : '' }}>3rd
+                                        Year</option>
+                                    <option value="4" {{ $student['yearLevel'] === '4th Year' ? 'selected' : '' }}>4th
+                                        Year</option>
                                 </select>
                             </div>
                         </form>
                     </div>
                     <div class="card-footer bg-light">
-                        <button type="button" class="btn btn-primary">Add Student</button>
-                        <button type="button" class="btn btn-secondary ms-2">Cancel</button>
+                        <x-table_button :view="url('/students')" name="Confirm" class="btn-primary"></x-table_button>
+                        <x-table_button :view="url('/students')" name="Back" class="btn-primary"></x-table_button>
                     </div>
                 </div>
             </div>

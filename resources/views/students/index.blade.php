@@ -1,4 +1,3 @@
-@props(['edit'])
 
 @extends('layout')
 
@@ -9,7 +8,7 @@
 @section('content')
     <x-body>
         <h1>STUDENT INDEX</h1>
-        <button class="rounded m-3"><a href="/students/create">Add Student</a></button>
+        <button class="rounded m-3 btn-danger"><a href="/students/create">Add Student</a></button>
         <table class="table table-striped table-hover table-bordered">
             <thead>
                 <tr>
@@ -28,11 +27,10 @@
                         <td>{{ $student['course'] }}</td>
                         <td>{{ $student['yearLevel'] }}</td>
                         <td>
-                            <x-table_button class="btn-success">
-                                :view=url('/students/' . $sample )
+                            <x-table_button :view="url('/students/show/' . $student['id'])" name="View" class="btn-success">
                             </x-table_button>
-                            <button class=""><a href="/students/show">View</a></button>
-                            <button class=""><a href="/students/edit">Edit</a></button>
+                            <x-table_button :view="url('/students/edit/' . $student['id'])" name="Edit" class="btn-success">
+                            </x-table_button>
                         </td>
                     </tr>
                 @endforeach

@@ -2,13 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('home'); //Gives the Welcome view
-});
-
-//See Students Route
-Route::get('/students', function () {
-    $students = [
+class StudentData {
+    public static $students = [
         ['id' => 'S0001', 'name' => 'Jack Townsend', 'course' => 'Computer Science', 'yearLevel' => '3rd Year'],
         ['id' => 'S0002', 'name' => 'Maria Santos', 'course' => 'Information Technology', 'yearLevel' => '2nd Year'],
         ['id' => 'S0003', 'name' => 'David Kim', 'course' => 'Software Engineering', 'yearLevel' => '1st Year'],
@@ -29,9 +24,16 @@ Route::get('/students', function () {
         ['id' => 'S0018', 'name' => 'Ava Lewis', 'course' => 'Data Science', 'yearLevel' => '1st Year'],
         ['id' => 'S0019', 'name' => 'Nathan Walker', 'course' => 'Computer Engineering', 'yearLevel' => '4th Year'],
         ['id' => 'S0020', 'name' => 'Zoe Hall', 'course' => 'Information Technology', 'yearLevel' => '3rd Year'],
-    ];
+    ];  
+}
 
-    return view('students.index',['students' => $students]);
+Route::get('/', function () {
+    return view('home'); //Gives the Welcome view
+});
+
+//See Students Route
+Route::get('/students', function () {
+    return view('students.index', ['students' => StudentData::$students]);
 });
 
 // Add Student Route
@@ -39,10 +41,14 @@ Route::get('/students/create', function () {
     return view('students.create');
 });
 
-Route::get('/students/show', function(){
-    return view('students.show');
+//Edit Student Route
+Route::get('/students/show/{id}', function ($id) {
+    $student = collect(StudentData::$students)->firstWhere('id', $id);
+
+    return view('students.show', ['student' => $student]);
 });
 
-Route::get('/students/edit', function(){
-    return view('students.edit');
+Route::get('/students/edit/{id}', function ($id) {
+    $student = collect(StudentData::$students)->firstWhere('id', $id);
+    return view('students.edit', ['student' => $student]);
 });
