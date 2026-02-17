@@ -6,13 +6,11 @@ use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
-    //timestamp 31:40
     public function index() {
         $students = Student::all();
         return view('students.index', ['students' => $students]);
     }
 
-    //timestamp 16:23
     public function create() {
         return view('students.create');
     }
@@ -26,5 +24,25 @@ class StudentController extends Controller
 
         $newStudent = Student::create($data);
         return redirect(route('student.index'));
+    }
+
+    public function edit(Student $student) {
+        return view('students.edit', ['student' => $student]);
+    }
+    
+    public function update(Student $student, Request $request) {
+        $data = $request->validate([
+            'name' => 'required',
+            'course' => 'required',
+            'yearLevel' => 'required'
+        ]);
+
+        $student->update($data);
+
+        return redirect(route('student.index'))->with('success', 'Student Updated Successfully');
+    }
+    
+    public function show(Student $student) {
+        return view('students.show', ['student' => $student]);
     }
 }

@@ -27,9 +27,9 @@
                         <td>{{ $student['course'] }}</td>
                         <td>{{ $student['yearLevel'] }}</td>
                         <td>
-                            <x-table_button :view="url('/students/show/' . $student['id'])" name="View" class="btn-success">
+                            <x-table_button :view="route('student.show' , ['student' => $student])" name="View" class="btn-success">
                             </x-table_button>
-                            <x-table_button :view="url('/students/edit/' . $student['id'])" name="Edit" class="btn-success">
+                            <x-table_button :view="route('student.edit', ['student' => $student])" name="Edit" class="btn-success">
                             </x-table_button>
                         </td>
                     </tr>
